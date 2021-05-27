@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>基础管理平台</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body class="container">
+<div class="row">
+    <div class="col-md-12">
+        <br>
+        <br>
+        <table class="table table-hover table-bordered">
+            <tr>
+                <td colspan="2" class="info"><label>单据详情</label></td>
+            </tr>
+            <tr>
+                <td class="info"><label>ID:</label></td>
+                <td>
+                    {$contans->getData('id')}
+                </td>
+            </tr>
+            <tr>
+                <td class="info"><label>报修单号:</label></td>
+                <td>
+                    {$contans->getData('bxhao')}
+                </td>
+            </tr>
+            <tr>
+                <td class="info"><label>用户名:</label></td>
+                <td>
+                    {$contans->getData('username')}
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="info"><label>座位号:</label></td>
+                <td>
+                    {$contans->getData('zwh')}
+            </tr>
+            <tr>
+                <td class="info"><label>品牌:</label></td>
+                <td>
+                    {$contans->getData('pingpai')}
+                </td>
+            </tr>
+            <tr>
+                <td class="info"><label>设备型号:</label></td>
+                <td>
+                    {$contans->getData('sbxh')}
+                </td>
+            </tr>
+            <tr>
+                <td class="info"><label>固资编号:</label></td>
+                <td>
+                    {$contans->getData('gzbh')}
+                </td>
+            </tr>
+            <tr>
+                <td class="info"><label>供应商机器<br>报修编号SN:</label></td>
+                <td>
+                    {$contans->getData('bxsn')}
+                </td>
+            </tr>
+            <tr>
+                <td class="info"><label>故障描述:</label></td>
+                <td>
+                    {$contans->getData('miaoshu')}
+                </td>
+            </tr>
+            <tr>
+                <td class="info"><label>更换配件:</label></td>
+                <td>
+                    {$contans->getData('ghpj')}
+                </td>
+            </tr>
+            <tr>
+                <td class="info"><label>预计完成时间:</label></td>
+                <td>
+                    {$contans->getData('yjwcsj')}
+                </td>
+            </tr>
+            <tr>
+                <td class="info"><label>创建时间:</label></td>
+                <td>
+                    {$contans->getData('create_time')|date='Y-m-d H:m:s',###}
+                </td>
+            </tr>
+            <tr>
+                <td class="info"><label>更新时间:</label></td>
+                <td>
+                    {$contans->getData('update_time')|date='Y-m-d H:m:s',###}
+                </td>
+            </tr>
+            <tr>
+                <td class="info"><label>当前状态:</label></td>
+                <td>
+                    {eq name='contans->getData("dqzt")' value='0'}未完成{else /}已完成{/eq}
+                </td>
+            </tr>
+            <tr>
+                <td class="info"><label>关联BZ单号:</label></td>
+                <td>
+                    {$contans->getData('glbz')}
+                </td>
+            </tr>
+            <tr>
+                <td class="info"><label>单据责任人:</label></td>
+                <td>
+                    {$contans->getData('gjr')} - 联系方式：{$contans->getData('gjr_mobphone')}
+                </td>
+            </tr>
+            <tr>
+                <td class="info"><label>操作记录:</label></td>
+                <td>
+                    {$contans->getData('jl')}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <a href="{:url('Index/index')}" class="btn btn-primary"><i class="glyphicon glyphicon-home"></i>&nbsp;返回主页</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

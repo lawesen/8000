@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>基础管理平台</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+</head>
+
+<body class="container-fluid">
+<div class="row">
+    <div class="col-md-12">
+        <hr>
+            8000设备报修系统 - 待认领
+        <hr />
+        <div class="row">
+            <div class="col-md-8">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label class="sr-only" for="username">用户名</label>
+                        <input name="username" type="text" class="form-control" placeholder="用户名..." value="{:input('get.username')}">
+                    </div>
+                    <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i>&nbsp;查询</button>
+                </form>
+            </div>
+            <div class="col-md-4 text-left">
+                <a href="{:url('Index/add')}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>&nbsp;新增单据</a>
+<!--                <a href="{:url('Index/select')}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>&nbsp;select</a>-->
+            </div>
+        </div>
+        <hr />
+        <table class="table table-hover table-bordered">
+            <tr>
+                <!--<td>
+                    <a href="{:url('Index/send_email')}" class="btn btn-primary"><i class="glyphicon glyphicon-send"> </i>&nbsp;测试邮件</a>
+                </td>-->
+                <td colspan="12">
+                    <p style="margin-bottom: 10px"><i class="glyphicon glyphicon-user"></i> 当前用户：{$Think.session.username} ( {$Think.session.chname} )</p>
+                </td>
+<!--                <td>-->
+<!--                    <a href="{:url('Index/imports')}" class="btn btn-primary"><i class="glyphicon glyphicon-log-out"></i>&nbsp;导入</a>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <a href="{:url('Index/exp')}" class="btn btn-primary"><i class="glyphicon glyphicon-log-out"></i>&nbsp;导出</a>-->
+<!--                </td>-->
+                <td>
+                    <a href="{:url('Login/logOut')}" class="btn btn-primary"><i class="glyphicon glyphicon-log-out"></i>&nbsp;注销登陆</a>
+                </td>
+            </tr>
+            <tr class="info" >
+                <th>ID</th>
+                <th>报修单号</th>
+                <th>用户名</th>
+                <th>座位号</th>
+                <th>提单时间</th>
+                <th>设备型号</th>
+                <th>固资编号</th>
+                <th>报修编号SN</th>
+                <th>故障描述</th>
+                <th>更换配件</th>
+                <th>状态</th>
+                <th>预计完成时间</th>
+                <th>操作</th>
+            </tr>
+            {volist name="contans" id="vo" key="key"}
+            <tr>
+                <td>{$key}</td>
+                <td>{$vo->getData('bxhao')}</td>
+                <td>{$vo->getData('username')}</td>
+                <td>{$vo->getData('diqu')}-{$vo->getData('dasha')}-{$vo->getData('zwh')}</td>
+                <td>{$vo->getData('create_time')|date="Y-m-d",###}</td>
+                <!--<td>{$vo->getData('pingpai')}</td>-->
+                <td>{$vo->getData('sbxh')}</td>
+                <td>{$vo->getData('gzbh')}</td>
+                <td>{$vo->getData('bxsn')}</td>
+                <td>{$vo->getData('miaoshu')}</td>
+                <td>{$vo->getData('ghpj')}</td>
+                <td>{eq name='vo->getData("dqzt")' value='0'}未完成{else /}已完成{/eq}</td>
+                <td>{$vo->getData('yjwcsj')}</td>
+                <td>
+                    </i><a href="{:url('Index/edit?id=' . $vo->getData('id'))}" class="btn btn-sm btn-primary" target="_blank"><i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑</a>
+                    <a href="{:url('Index/xiangqing?id=' . $vo->getData('id'))}" class="btn btn-sm btn-primary" target="_blank"><i class="glyphicon glyphicon-search"></i>&nbsp; 查看详情</a>
+                    <a href="{:url('Index/del?id=' . $vo->getData('id'))}" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i>&nbsp;删除</a>
+                <!--<a href="__ROOT__/index/index/index/del?id={$vo->getData('id')}.html">删除</a>-->
+                </td>
+            </tr>
+            {/volist}
+            <tr>
+                <td colspan="13" style="text-align: center">{$contans->render()}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

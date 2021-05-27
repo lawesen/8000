@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>基础管理平台</title>
+    <link rel="stylesheet" type="text/css" href="__ROOT__/static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+</head>
+
+<body class="container">
+<div class="row">
+    <div class="col-md-12">
+        <br>
+        <br>
+        <form action="{:url('update')}" method="post">
+            <input type="hidden" name="id" value="{$vo->getData('id')}" />
+            <input type="hidden" name="update_time" value="{:time()}"/>
+            <table class="table table-hover table-bordered">
+                <tr>
+                    <td colspan="2" class="info"><label>单据编辑</label></td>
+                </tr>
+                <tr>
+                    <td class="info"><label>报修单号:</label></td>
+                    <td>
+                        {$vo->getData('bxhao')}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="info"><label>用户名:</label></td>
+                    <td>
+                        {$vo->getData('username')}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="info"><label>座位号:</label></td>
+                    <td>
+                        <input type="text" name="zwh" value="{$vo->getData('zwh')}">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="info"><label>设备型号:</label></td>
+                    <td><input type="text" name="sbxh" value="{$vo->getData('sbxh')}"/></td>
+                </tr>
+                <tr>
+                    <td class="info"><label>固资编号:</label></td>
+                    <td><input type="text" name="gzbh" value="{$vo->getData('gzbh')}"/></td>
+                </tr>
+                <tr>
+                    <td class="info"><label>供应商机器<br>报修编号SN:</label></td>
+                    <td>{$vo->getData('bxsn')}</td>
+                </tr>
+                <tr>
+                    <td class="info"><label>故障描述:</label></td>
+                    <td><textarea name="miaoshu" class="common-textarea" style="width: 100%;" rows="10">{$vo->getData('miaoshu')}</textarea></td>
+                </tr>
+                <tr>
+                    <td class="info"><label>更换配件:</label></td>
+                    <td><input type="text" name="ghpj" value="{$vo->getData('ghpj')}"/></td>
+                </tr>
+                <tr>
+                    <td class="info"><label>预计完成时间:</label></td>
+                    <td>
+                        <input type="date" name="yjwcsj" value="{$vo->getData('yjwcsj')}">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="info"><label>当前状态:</label></td>
+                    <td>
+                        <select name="dqzt">
+                            <option value="">当前：{eq name='vo->getData("dqzt")' value='0'}未完成{else /}已完成{/eq}</option>
+                            <option value="1">更改为：已完成</option>
+                            <option value="0">更改为：未完成</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="info"><label>关联BZ单号:</label></td>
+                    <td><input type="text" name="glbz" value="{$vo->getData('glbz')}"/></td>
+                </tr>
+                <tr>
+                    <td class="info"><label>8000处理人:</label></td>
+                    <td>{$vo->getData('gjr')}
+                        <b> &nbsp;- &nbsp;</b>
+                        联系电话：{$vo->getData('gjr_mobphone')}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-saved"></i>&nbsp;保存
+                        </button>&nbsp;
+                        <a href="{:url('Index/index')}" class="btn btn-primary"><i class="glyphicon glyphicon-home"></i>&nbsp;返回主页</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+</html>
