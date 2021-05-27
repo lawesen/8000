@@ -397,6 +397,7 @@ class Index extends Controller
         return $htmls;
     }
     public function demos(){
-        return 0;
+        return 'demos';
+
     }
 }
