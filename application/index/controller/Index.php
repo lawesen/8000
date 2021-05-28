@@ -16,6 +16,7 @@ class Index extends Controller
 {
     public function exp(){
         echo '导出';
+
     }
 
     public function imports(){
